@@ -1,0 +1,31 @@
+Business Team Meeting — Project Orion Performance & Scale Discussion | BT-003
+
+Sarah (PM): James, let's talk about expected scale. How many users are we looking at?
+
+James (Client): We have about 50,000 enterprise accounts right now. Each account has between 5 and 200 users. So worst case, maybe 2 million total users.
+
+Sarah (PM): And concurrent usage?
+
+James (Client): Peak is usually Monday mornings. We'd estimate around 10,000 concurrent users at peak. But we're growing 30% year-over-year so plan for double that within 18 months.
+
+Sarah (PM): Got it. Any specific performance expectations?
+
+James (Client): Page loads under 2 seconds. API responses under 500ms. We've had complaints about our current system being slow and it's a big reason for this rebuild.
+
+Sarah (PM): What about availability?
+
+James (Client): 99.9% uptime minimum. Scheduled maintenance windows are fine but they need to be outside business hours — which for us is complicated because we operate across three time zones: CET, EST, and SGT.
+
+Sarah (PM): International deployment then. Any data residency requirements?
+
+James (Client): EU data stays in EU. That's non-negotiable. US and APAC can be wherever makes sense for latency.
+
+Sarah (PM): What about the mobile experience? Is a native app on the roadmap?
+
+James (Client): Not for v1. But the web portal must be fully responsive. Our users check tickets on their phones constantly.
+
+Sarah (PM): Last question — do you need any kind of reporting or analytics dashboard?
+
+James (Client): Yes! The admins need a dashboard showing ticket volume, resolution times, SLA compliance rates. Real-time or near-real-time. That's actually a big selling point for us internally.
+
+Sarah (PM): Noted. I'll make sure that's in the spec.

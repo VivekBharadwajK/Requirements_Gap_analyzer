@@ -1,0 +1,23 @@
+Business Team Meeting — Project Orion Security & Compliance Review | BT-002
+
+Sarah (PM): Let's circle back on security. James, your legal team had some requirements?
+
+James (Client): Yes. So first off, all data at rest must be encrypted. AES-256 minimum. And we need audit logs for every user action — who did what, when.
+
+Sarah (PM): Makes sense for compliance. What about authentication?
+
+James (Client): Multi-factor authentication is mandatory for all users. Not optional, mandatory. We had an incident last year and the board is very firm on this.
+
+Sarah (PM): Understood. And session management?
+
+James (Client): Sessions should timeout after 15 minutes of inactivity. And concurrent sessions from different devices should be blocked — one active session per user at a time.
+
+Rachel (Legal): I'd add that we need data export capability for GDPR subject access requests. Users must be able to download all their data in a machine-readable format within 30 days of request.
+
+Sarah (PM): Got it. And password policy?
+
+James (Client): Minimum 12 characters, must include uppercase, lowercase, numbers, and special characters. Password rotation every 90 days.
+
+Rachel (Legal): Oh, and we need a data retention policy. After a user account is closed, their data should be anonymized within 60 days, not deleted — anonymized. We still need the aggregate data for reporting.
+
+Sarah (PM): This is comprehensive. Let me make sure engineering is aware of all of this.

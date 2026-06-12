@@ -1,0 +1,37 @@
+Engineering Team Meeting — Project Orion Infrastructure Planning | ET-003
+
+Dev (Amir): Alright, let's talk infrastructure. I'm thinking we deploy on AWS, single region to start — eu-west-1 since most users are in Europe.
+
+Dev (Priya): Makes sense. Kubernetes or ECS?
+
+Dev (Amir): Let's go ECS Fargate. Less operational overhead. We can auto-scale based on CPU and memory.
+
+Dev (Priya): What about the database? Single Postgres instance?
+
+Dev (Amir): For now, yeah. RDS Postgres with a read replica. We can shard later if needed but I don't think we'll hit those limits for a while.
+
+Dev (Priya): How many users are we expecting?
+
+Dev (Amir): Sarah said something like 50K accounts. So maybe a few hundred thousand users total? Should be fine with properly indexed queries.
+
+Dev (Priya): What about caching?
+
+Dev (Amir): Redis for session data and frequently accessed stuff like account profiles. Should keep response times snappy.
+
+Dev (Priya): Speaking of response times, do we have a target?
+
+Dev (Amir): I think under 3 seconds for page loads is reasonable. APIs should be under a second.
+
+Dev (Priya): Cool. Frontend-wise, I'll make sure Next.js does SSR for the main pages. That should help with initial load.
+
+Dev (Amir): Good. Oh — should we think about CDN?
+
+Dev (Priya): Probably not for v1. Static assets can come from S3 directly. Let's not over-engineer.
+
+Dev (Amir): Fair. One more thing — monitoring. I'll set up CloudWatch dashboards and PagerDuty alerts for downtime.
+
+Dev (Priya): What's our SLA target?
+
+Dev (Amir): I think 99.5% uptime is realistic for an initial launch. We can tighten it once we're stable.
+
+Dev (Priya): Sounds good. Let me knock out the Terraform configs this sprint.

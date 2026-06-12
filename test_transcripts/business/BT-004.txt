@@ -1,0 +1,35 @@
+Business Team Meeting — Project Orion Integration & Migration | BT-004
+
+Sarah (PM): James, let's talk integrations. What existing systems does this need to connect to?
+
+James (Client): Our CRM — Salesforce. When a support ticket is raised, it needs to sync to Salesforce so our account managers can see it. Bi-directional sync ideally.
+
+Sarah (PM): So ticket updates in the portal reflect in Salesforce and vice versa?
+
+James (Client): Exactly. And when an account manager updates something in Salesforce, the customer should see it in the portal too.
+
+Sarah (PM): What about your existing ticketing system? Are you replacing it entirely?
+
+James (Client): We're on Zendesk right now. We want to migrate all open tickets into the new system at launch. Historical closed tickets should be viewable but can be read-only.
+
+Sarah (PM): That's a significant data migration. How many tickets are we talking?
+
+James (Client): About 300,000 historical tickets going back 5 years. And usually around 2,000 open at any time.
+
+Sarah (PM): Noted. Any other integrations?
+
+James (Client): Oh yeah — SSO. Our enterprise clients use their own identity providers. SAML and OIDC both need to be supported. Some clients are on Azure AD, others on Okta.
+
+Sarah (PM): So federated identity. That's important. Anything else?
+
+James (Client): The billing tier tickets need to connect to our payment processor — Stripe. So agents can look up invoice status without leaving the portal.
+
+Sarah (PM): And from a migration standpoint, do existing users need to be migrated with their passwords?
+
+James (Client): No, we'll force a password reset for everyone. But their account data, preferences, and history all need to come over cleanly. Zero data loss on migration.
+
+Sarah (PM): Timeline for migration?
+
+James (Client): We want a 2-week parallel run where both systems are active, then hard cutover. Max 4 hours of downtime during cutover.
+
+Sarah (PM): That's tight but doable. Let me brief engineering.

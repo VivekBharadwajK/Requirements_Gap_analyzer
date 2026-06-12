@@ -1,0 +1,27 @@
+Engineering Team Meeting — Project Orion Security Implementation | ET-002
+
+Dev (Amir): So I set up Auth0 with MFA enabled. It supports TOTP and SMS-based second factor out of the box.
+
+Dev (Priya): Nice. What about session handling?
+
+Dev (Amir): Auth0 handles refresh tokens. I've set token expiry to 1 hour. We can adjust later.
+
+Dev (Priya): Should we add session timeout on the frontend? Like if they're idle?
+
+Dev (Amir): Yeah, good call. Let's do 30 minutes idle timeout. That should be safe enough.
+
+Dev (Priya): What about encryption?
+
+Dev (Amir): Postgres has TDE — transparent data encryption. I'll enable that. And we're already using HTTPS everywhere so data in transit is covered.
+
+Dev (Priya): Cool. I was thinking about audit logs. We could use a simple append-only table in Postgres. User ID, action, timestamp, IP address.
+
+Dev (Amir): That works for now. We can move to something like OpenSearch later if the volume gets crazy.
+
+Dev (Priya): What about password policy? Auth0 has settings for that.
+
+Dev (Amir): I'll set minimum 8 characters with complexity requirements. Standard stuff.
+
+Dev (Priya): Alright. I don't think we need to worry about data export right now — that's a phase 2 thing probably.
+
+Dev (Amir): Agreed. Let's focus on getting the core auth flow working first.

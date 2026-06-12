@@ -1,0 +1,39 @@
+Engineering Team Meeting — Project Orion Integrations Sprint | ET-004
+
+Dev (Amir): Okay so integrations. Salesforce is the big one. I looked at their API — REST and Bulk APIs available. We can do a webhook-based sync for real-time updates.
+
+Dev (Priya): Sounds right. But webhooks can be unreliable. Should we have a polling fallback?
+
+Dev (Amir): Good point. Let's do webhooks for immediate sync and a scheduled job every 15 minutes to catch anything missed.
+
+Dev (Priya): What about the direction? Portal to Salesforce only or both ways?
+
+Dev (Amir): Let's start with portal-to-Salesforce only. Bi-directional is complex — conflict resolution, race conditions. We can add inbound sync in phase 2.
+
+Dev (Priya): Fair. What about SSO? I know clients want to use their own IdPs.
+
+Dev (Amir): Auth0 supports enterprise connections. We can do SAML out of the box. OIDC too. I'll set up a connection per client.
+
+Dev (Priya): Nice. What about the Zendesk migration?
+
+Dev (Amir): I was thinking we write a one-time migration script. Pull everything via Zendesk API, transform it to our schema, bulk insert.
+
+Dev (Priya): 300K tickets though. That's going to take a while. And we need to map users correctly.
+
+Dev (Amir): Yeah, we'll need a mapping table. Email-based matching should work for most. Edge cases we'll handle manually.
+
+Dev (Priya): What about historical tickets — do they need full functionality?
+
+Dev (Amir): Nah, just read-only views. No need to reopen or update them.
+
+Dev (Priya): What about the Stripe integration?
+
+Dev (Amir): Hmm, I haven't looked into that yet. Let's push that to next sprint. It's not critical for MVP.
+
+Dev (Priya): Okay. And for cutover — any plan for the parallel run?
+
+Dev (Amir): I was thinking we run both systems for a week, then switch DNS. Maybe an hour of downtime max during the switch.
+
+Dev (Priya): A week might not be enough for confidence. But let's see how testing goes.
+
+Dev (Amir): Yeah. Let's get the migration script working first, then worry about cutover logistics.
