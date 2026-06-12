@@ -1,0 +1,334 @@
+{
+  "metadata": {
+    "generated_at": "2026-06-12T18:13:06.208944",
+    "total_requirements": 12,
+    "total_solutions": 8,
+    "total_gaps": 7,
+    "gaps_by_type": {
+      "unaddressed": 3,
+      "scope_mismatch": 2,
+      "implicit_assumption": 1,
+      "ambiguity": 1
+    },
+    "gaps_by_severity": {
+      "high": 3,
+      "medium": 3,
+      "low": 1
+    }
+  },
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "All data at rest must be encrypted. AES-256 minimum.",
+      "priority": "must-have",
+      "constraints": [
+        "AES-256 encryption"
+      ],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "Audit logs for every user action \u2014 who did what, when.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "Multi-factor authentication is mandatory for all users.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "Sessions should timeout after 15 minutes of inactivity.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "Concurrent sessions from different devices should be blocked \u2014 one active session per user at a time.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-006",
+      "statement": "Minimum 12 characters, must include uppercase, lowercase, numbers, and special characters.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-007",
+      "statement": "Password rotation every 90 days.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-008",
+      "statement": "Data export capability for GDPR subject access requests. Users must be able to download all their data in a machine-readable format within 30 days of request.",
+      "priority": "must-have",
+      "constraints": [
+        "GDPR compliance"
+      ],
+      "raised_by": "Rachel (Legal)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-009",
+      "statement": "Data retention policy. After a user account is closed, their data should be anonymized within 60 days, not deleted \u2014 anonymized.",
+      "priority": "must-have",
+      "constraints": [
+        "Anonymization"
+      ],
+      "raised_by": "Rachel (Legal)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-010",
+      "statement": "We need a data retention policy.",
+      "priority": "nice-to-have",
+      "constraints": [
+        "Data anonymization"
+      ],
+      "raised_by": "Rachel (Legal)",
+      "implicit": true,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-011",
+      "statement": "We had an incident last year and the board is very firm on this.",
+      "priority": "unclear",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    },
+    {
+      "id": "REQ-012",
+      "statement": "The board is very firm on this.",
+      "priority": "unclear",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-002.txt"
+    }
+  ],
+  "solutions": [
+    {
+      "id": "SOL-001",
+      "statement": "Auth0 with MFA enabled. It supports TOTP and SMS-based second factor out of the box.",
+      "scope_limitations": [],
+      "technologies": [
+        "Auth0",
+        "MFA"
+      ],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale"
+      ],
+      "source_transcript": "ET-002.txt"
+    },
+    {
+      "id": "SOL-002",
+      "statement": "Postgres has TDE \u2014 transparent data encryption. I'll enable that.",
+      "scope_limitations": [],
+      "technologies": [
+        "Postgres",
+        "TDE"
+      ],
+      "deferred": [],
+      "assumptions": [],
+      "source_transcript": "ET-002.txt"
+    },
+    {
+      "id": "SOL-003",
+      "statement": "I've set token expiry to 1 hour. We can adjust later.",
+      "scope_limitations": [
+        "Token expiry might be too short"
+      ],
+      "technologies": [
+        "Auth0",
+        "Tokens"
+      ],
+      "deferred": [],
+      "assumptions": [],
+      "source_transcript": "ET-002.txt"
+    },
+    {
+      "id": "SOL-004",
+      "statement": "Let's do 30 minutes idle timeout. That should be safe enough.",
+      "scope_limitations": [
+        "Session timeout might not be long enough"
+      ],
+      "technologies": [
+        "Auth0",
+        "Tokens"
+      ],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale"
+      ],
+      "source_transcript": "ET-002.txt"
+    },
+    {
+      "id": "SOL-005",
+      "statement": "That works for now. We can move to something like OpenSearch later if the volume gets crazy.",
+      "scope_limitations": [
+        "Audit logs might not be implemented in time"
+      ],
+      "technologies": [
+        "Postgres",
+        "OpenSearch"
+      ],
+      "deferred": [
+        "Audit logs"
+      ],
+      "assumptions": [],
+      "source_transcript": "ET-002.txt"
+    },
+    {
+      "id": "SOL-006",
+      "statement": "I'll set minimum 8 characters with complexity requirements. Standard stuff.",
+      "scope_limitations": [],
+      "technologies": [
+        "Auth0"
+      ],
+      "deferred": [],
+      "assumptions": [
+        "Password policy might not be strict enough"
+      ],
+      "source_transcript": "ET-002.txt"
+    },
+    {
+      "id": "SOL-007",
+      "statement": "We can move to something like OpenSearch later if the volume gets crazy.",
+      "scope_limitations": [
+        "Audit logs might not be implemented in time"
+      ],
+      "technologies": [
+        "Postgres",
+        "OpenSearch"
+      ],
+      "deferred": [
+        "Audit logs"
+      ],
+      "assumptions": [],
+      "source_transcript": "ET-002.txt"
+    },
+    {
+      "id": "SOL-008",
+      "statement": "Let's focus on getting the core auth flow working first.",
+      "scope_limitations": [],
+      "technologies": [],
+      "deferred": [
+        "Phase 2"
+      ],
+      "assumptions": [],
+      "source_transcript": "ET-002.txt"
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "GAP-001",
+      "type": "unaddressed",
+      "requirement_refs": [
+        "REQ-008"
+      ],
+      "solution_refs": [],
+      "description": "GDPR implementation details for EU deployment are missing.",
+      "severity": "high",
+      "suggested_action": "Provide detailed GDPR compliance plan and timeline for EU deployment."
+    },
+    {
+      "gap_id": "GAP-002",
+      "type": "scope_mismatch",
+      "requirement_refs": [
+        "REQ-004"
+      ],
+      "solution_refs": [
+        "SOL-004"
+      ],
+      "description": "Session timeout of 30 minutes is shorter than required 15 minutes.",
+      "severity": "medium",
+      "suggested_action": "Extend session timeout to at least 15 minutes."
+    },
+    {
+      "gap_id": "GAP-003",
+      "type": "scope_mismatch",
+      "requirement_refs": [
+        "REQ-005"
+      ],
+      "solution_refs": [
+        "SOL-004"
+      ],
+      "description": "Concurrent sessions from different devices are not blocked as required.",
+      "severity": "medium",
+      "suggested_action": "Implement concurrent session blocking"
+    },
+    {
+      "gap_id": "GAP-004",
+      "type": "implicit_assumption",
+      "requirement_refs": [
+        "SOL-001"
+      ],
+      "solution_refs": [],
+      "description": "Assumes scale is fine without implementing audit logs in time.",
+      "severity": "medium",
+      "suggested_action": "Re-evaluate assumption on scalability and implement audit logs as required"
+    },
+    {
+      "gap_id": "GAP-005",
+      "type": "ambiguity",
+      "requirement_refs": [
+        "REQ-010"
+      ],
+      "solution_refs": [],
+      "description": "Requirement for data retention policy is unclear.",
+      "severity": "low",
+      "suggested_action": "Clarify requirement for data retention policy"
+    },
+    {
+      "gap_id": "GAP-006",
+      "type": "unaddressed",
+      "requirement_refs": [
+        "REQ-011"
+      ],
+      "solution_refs": [],
+      "description": "Incident response plan is missing.",
+      "severity": "high",
+      "suggested_action": "Develop and implement incident response plan"
+    },
+    {
+      "gap_id": "GAP-007",
+      "type": "unaddressed",
+      "requirement_refs": [
+        "REQ-012"
+      ],
+      "solution_refs": [],
+      "description": "Board's firm stance on security is not reflected in solution.",
+      "severity": "high",
+      "suggested_action": "Ensure board's requirements are incorporated into the solution"
+    }
+  ]
+}

@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "generated_at": "2026-06-12T18:53:50.621713",
+    "total_requirements": 10,
+    "total_solutions": 10,
+    "total_gaps": 7,
+    "gaps_by_type": {
+      "unaddressed": 3,
+      "scope_mismatch": 2,
+      "implicit_assumption": 1,
+      "ambiguity": 1
+    },
+    "gaps_by_severity": {
+      "high": 3,
+      "medium": 3,
+      "low": 1
+    }
+  },
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "A customer portal is needed with enterprise user login, account history, and support ticket routing.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "Sarah (PM)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "Support tickets need to route to the right team automatically, with three tiers: billing, technical, and general.",
+      "priority": "must-have",
+      "constraints": [
+        "SLA"
+      ],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "Users need to be kept in the loop on ticket status, with email notifications at minimum.",
+      "priority": "must-have",
+      "constraints": [
+        "SLA"
+      ],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "The account history needs to be at least 24 months, with filterable by date and type.",
+      "priority": "must-have",
+      "constraints": [
+        "GDPR compliance"
+      ],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "The system needs to be GDPR compliant.",
+      "priority": "must-have",
+      "constraints": [
+        "GDPR compliance (EU)",
+        "Geographic scope"
+      ],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-006",
+      "statement": "Admins need to see everything across all accounts, with a separate view for their own accounts.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-007",
+      "statement": "Admins need to be able to impersonate a user for support purposes.",
+      "priority": "must-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-008",
+      "statement": "Notifications need to be sent via email at minimum.",
+      "priority": "nice-to-have",
+      "constraints": [
+        "SLA"
+      ],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-009",
+      "statement": "SMS notifications are a nice-to-have.",
+      "priority": "nice-to-have",
+      "constraints": [],
+      "raised_by": "James (Client)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    },
+    {
+      "id": "REQ-010",
+      "statement": "Access control needs to be implemented, with separate views for end users and admins.",
+      "priority": "unclear",
+      "constraints": [
+        "SLA"
+      ],
+      "raised_by": "Sarah (PM)",
+      "implicit": false,
+      "source_transcript": "BT-001.txt"
+    }
+  ],
+  "solutions": [
+    {
+      "id": "SOL-001",
+      "statement": "A customer portal is needed with enterprise user login, account history, and support ticket routing.",
+      "scope_limitations": [],
+      "technologies": [
+        "Next.js",
+        "FastAPI",
+        "Postgres"
+      ],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-002",
+      "statement": "Support tickets need to route to the right team automatically, with three tiers: billing, technical, and general.",
+      "scope_limitations": [],
+      "technologies": [
+        "state machine"
+      ],
+      "deferred": [
+        "Phase 2"
+      ],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-003",
+      "statement": "Users need to be kept in the loop on ticket status, with email notifications at minimum.",
+      "scope_limitations": [],
+      "technologies": [
+        "SendGrid"
+      ],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-004",
+      "statement": "The account history needs to be at least 12 months, with filterable by date and type.",
+      "scope_limitations": [
+        "12 months"
+      ],
+      "technologies": [
+        "Postgres"
+      ],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-005",
+      "statement": "The system needs to be GDPR compliant.",
+      "scope_limitations": [],
+      "technologies": [],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-006",
+      "statement": "Admins need to see everything across all accounts, with a separate view for their own accounts.",
+      "scope_limitations": [],
+      "technologies": [],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-007",
+      "statement": "Admins need to be able to impersonate a user for support purposes.",
+      "scope_limitations": [],
+      "technologies": [],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-008",
+      "statement": "Notifications need to be sent via email at minimum.",
+      "scope_limitations": [],
+      "technologies": [
+        "SendGrid"
+      ],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-009",
+      "statement": "SMS notifications are a nice-to-have.",
+      "scope_limitations": [
+        "12 months"
+      ],
+      "technologies": [],
+      "deferred": [
+        "Phase 2"
+      ],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    },
+    {
+      "id": "SOL-010",
+      "statement": "Access control needs to be implemented, with separate views for end users and admins.",
+      "scope_limitations": [],
+      "technologies": [],
+      "deferred": [],
+      "assumptions": [
+        "Should be fine for the scale they're talking about"
+      ],
+      "source_transcript": "ET-001.txt"
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "GAP-001",
+      "type": "unaddressed",
+      "requirement_refs": [
+        "REQ-004"
+      ],
+      "solution_refs": [],
+      "description": "The account history needs to be at least 24 months, but the solution only covers 12 months.",
+      "severity": "high",
+      "suggested_action": "Clarify why the solution only covers 12 months and provide a plan to extend it to 24 months."
+    },
+    {
+      "gap_id": "GAP-002",
+      "type": "scope_mismatch",
+      "requirement_refs": [
+        "REQ-004"
+      ],
+      "solution_refs": [
+        "SOL-004"
+      ],
+      "description": "The solution only covers 12 months, but the requirement specifies at least 24 months.",
+      "severity": "high",
+      "suggested_action": "Review and revise the scope limitations for SOL-004 to match the requirement."
+    },
+    {
+      "gap_id": "GAP-003",
+      "type": "implicit_assumption",
+      "requirement_refs": [
+        "SOL-005"
+      ],
+      "solution_refs": [
+        "SOL-005"
+      ],
+      "description": "The solution assumes that GDPR compliance for the EU deployment is sufficient, but it does not provide details on how to implement it.",
+      "severity": "high",
+      "suggested_action": "Request detailed information on how to implement GDPR compliance for the EU deployment."
+    },
+    {
+      "gap_id": "GAP-004",
+      "type": "ambiguity",
+      "requirement_refs": [
+        "REQ-010"
+      ],
+      "solution_refs": [
+        "SOL-010"
+      ],
+      "description": "The requirement specifies separate views for end users and admins, but the solution does not provide clear details on how to implement this.",
+      "severity": "medium",
+      "suggested_action": "Request clarification on how to implement separate views for end users and admins."
+    },
+    {
+      "gap_id": "GAP-005",
+      "type": "unaddressed",
+      "requirement_refs": [
+        "REQ-008"
+      ],
+      "solution_refs": [],
+      "description": "Notifications need to be sent via email at minimum, but the solution only mentions SendGrid without specifying the requirements for email notifications.",
+      "severity": "medium",
+      "suggested_action": "Request detailed information on how to implement email notifications using SendGrid."
+    },
+    {
+      "gap_id": "GAP-006",
+      "type": "unaddressed",
+      "requirement_refs": [
+        "REQ-009"
+      ],
+      "solution_refs": [],
+      "description": "SMS notifications are a nice-to-have, but the solution does not provide any details on how to implement them.",
+      "severity": "low",
+      "suggested_action": "Request clarification on whether SMS notifications are still required and how to implement them if necessary."
+    },
+    {
+      "gap_id": "GAP-007",
+      "type": "scope_mismatch",
+      "requirement_refs": [
+        "REQ-010"
+      ],
+      "solution_refs": [
+        "SOL-010"
+      ],
+      "description": "The solution does not provide clear details on how to implement separate views for end users and admins.",
+      "severity": "medium",
+      "suggested_action": "Request clarification on how to implement separate views for end users and admins."
+    }
+  ]
+}
