@@ -94,12 +94,6 @@ cd requirements-gap-agent-crewai
 pip install -r requirements.txt
 ```
 
-### Environment Variables
-
-```bash
-export OLLAMA_MODEL=llama3.2                   
-export OLLAMA_BASE_URL=http://localhost:11434    
-```
 
 ### Running the Pipeline
 
